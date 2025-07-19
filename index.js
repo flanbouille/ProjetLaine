@@ -12,6 +12,9 @@ console.log('[DEBUG] Initialisation des middlewares...');
 app.use(cors());
 app.use(express.json());
 
+// Sert les fichiers statiques du site web
+app.use(express.static('public')); // ← Ou 'Templates' selon ton dossier
+
 // Connexion MongoDB
 console.log('[DEBUG] Tentative de connexion à MongoDB...');
 mongoose.connect(process.env.MONGO_URI)

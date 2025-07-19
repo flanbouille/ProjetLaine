@@ -1,0 +1,31 @@
+.collections-filters {
+  display: flex;
+  gap: 1.3em;
+  align-items: center;
+  background: #f3e7fa;
+  padding: 18px 20px;
+  border-radius: 14px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px #eae6f7;
+  flex-wrap: wrap;
+}
+.collections-filters label {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: 1em;
+  color: #442b7b;
+  font-weight: 500;
+  cursor: pointer;
+}
+.collections-filters select {
+  padding: 7px 18px;
+  border-radius: 8px;
+  border: 1px solid #bfbbe0;
+  font-size: 1em;
+  color: #655e9f;
+  background: #fff;
+  outline: none;
+  font-family: inherit;
+  margin-left: 0.9em;
+}

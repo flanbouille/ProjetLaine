@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact – Les Douceurs d’Alyssia</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+    /* ... tout ton CSS contact spécifique d'origine ... */
+    .contact-main-layout {
+        display: flex;
+        max-width: 600px;
+        margin: 38px auto 0 auto;
+        gap: 32px;
+        min-height: 420px;
+        background: linear-gradient(135deg, #e7e0f6 80%, #f3e7fa 100%);
+        border-radius: 18px;
+        box-shadow: 0 4px 22px #eae6f7;
+        padding: 32px 32px 18px 32px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .contact-form-title {
+        font-size: 1.22em;
+        font-weight: bold;
+        color: #472b7b;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 17px;
+        width: 100%;
+        max-width: 440px;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 3px 13px #ece6ff;
+        padding: 24px 20px 15px 20px;
+    }
+    .contact-form label {
+        font-weight: 600;
+        color: #462b7b;
+        margin-bottom: 6px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        padding: 7px 11px;
+        border-radius: 7px;
+        border: 1.5px solid #e7e0f6;
+        font-size: 1em;
+        font-family: inherit;
+        background: #f8f5ff;
+        margin-bottom: 5px;
+        transition: border 0.18s;
+        resize: vertical;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+        border: 1.5px solid #c5aefb;
+        outline: none;
+    }
+    .btn-envoyer {
+        background: linear-gradient(90deg, #d3c2f7 30%, #e7e0f6 100%);
+        color: #442b7b;
+        padding: 10px 16px;
+        border-radius: 8px;
+        border: none;
+        font-weight: 600;
+        font-size: 1.04em;
+        cursor: pointer;
+        box-shadow: 0 2px 7px #ece6ff;
+        transition: background 0.2s, color 0.2s;
+        margin-top: 8px;
+        margin-bottom: 0;
+    }
+    .btn-envoyer:hover {
+        background: #c5aefb;
+        color: #fff;
+    }
+    .contact-success {
+        display: none;
+        color: #27ae60;
+        font-weight: bold;
+        font-size: 1.06em;
+        padding: 12px 0;
+        text-align: center;
+    }
+    .contact-coord {
+        margin-top: 14px;
+        text-align: center;
+        color: #442b7b;
+        font-size: 1.04em;
+    }
+    .contact-coord a {
+        color: #442b7b;
+        text-decoration: underline dotted;
+        font-weight: 500;
+        margin: 0 6px;
+    }
+    .contact-socials {
+        margin-top: 13px;
+        display: flex;
+        justify-content: center;
+        gap: 17px;
+    }
+    .contact-socials a {
+        font-size: 1.5em;
+        color: #BFBBD8;
+        transition: color 0.2s;
+    }
+    .contact-socials a:hover {
+        color: #F7CAC9;
+    }
+    @media (max-width: 900px) {
+      .contact-main-layout {
+        max-width: 98vw;
+        padding: 16px 4vw 10px 4vw;
+      }
+      .contact-form { max-width: 100vw; padding: 12px 3vw; }
+      .header-flex {
+        gap: 1em;
+      }
+      .logo-badge {
+        height: 60px;
+        width: 60px;
+        padding: 6px;
+        margin-left: 0.5em;
+        transform: translateY(8px);
+      }
+      .logo-badge img {
+        width: 100%;
+        height: 100%;
+      }
+      .logo-badge::before {
+        width: 75px;
+        height: 19px;
+      }
+      .header-title-group h1 {
+        font-size: 1.2rem;
+        white-space: normal;
+      }
+      .container {
+        width: 97vw;
+        padding: 0;
+      }
+      nav {
+        flex-direction: column;
+        gap: 0.8em;
+        align-items: flex-start;
+        padding-left: 0.6em;
+      }
+      .cart-zone {
+        margin-left: 0;
+        margin-top: 0.8em;
+      }
+    }
+    footer {
+        background: #bebbe7;
+        color: #fff;
+        margin-top: 38px;
+        font-size: 0.94em;
+        padding: 20px 0 10px 0;
+        text-align: left;
+        box-shadow: 0 -2px 15px #cac4e7;
+    }
+    footer .container {
+        color: #fff;
+        text-align: left;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-flex">
+            <div class="header-title-group">
+                <h1 class="site-title">Un échange tout en douceur</h1>
+            </div>
+            <div class="logo-badge" style="height:100px;width:100px;display:flex;align-items:center;justify-content:center;">
+                <img src="/static/images/logo.png" alt="Logo Les Douceurs d’Alyssia">
+            </div>
+        </div>
+        <div class="container">
+  <nav class="main-nav">
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="collections.html" class="active">Collections</a>
+      <a href="personnalisation.html">Personnalisation</a>
+      <a href="contact.html">Contact</a>
+      <a href="a-propos.html">À propos</a>
+    </div>
+    <div class="cart-zone">
+      <span class="cart-icon" id="cart-icon" title="Voir le panier">🛒</span>
+      <span class="cart-badge" id="cart-count">0</span>
+      <a href="auth.html" title="Se connecter ou créer un compte" class="auth-btn">
+        <span class="auth-icon">👤</span>
+      </a>
+    </div>
+  </nav>
+</div>
+    </header>
+    <main>
+      <div class="contact-main-layout">
+        <div class="contact-form-title">Contactez-nous</div>
+        <form class="contact-form" id="contact-form" autocomplete="on">
+            <div>
+              <label for="nom-contact">Nom</label>
+              <input type="text" id="nom-contact" name="nom" required placeholder="Votre nom complet" autocomplete="name" />
+            </div>
+            <div>
+              <label for="email-contact">E-mail</label>
+              <input type="email" id="email-contact" name="email" required placeholder="Votre adresse e-mail" autocomplete="email" />
+            </div>
+            <div>
+              <label for="sujet-contact">Sujet</label>
+              <input type="text" id="sujet-contact" name="sujet" required placeholder="Sujet de votre message" />
+            </div>
+            <div>
+              <label for="message-contact">Votre message</label>
+              <textarea id="message-contact" name="message" rows="5" required placeholder="Écrivez votre message ici..."></textarea>
+            </div>
+            <button type="submit" class="btn-envoyer">Envoyer le message</button>
+            <div class="contact-success" id="contact-success">✅ Merci ! Votre message a bien été envoyé. Nous vous répondrons rapidement.</div>
+        </form>
+        <div class="contact-coord">
+            <div>📧 E-mail : <a href="mailto:contact@douceursdalyssia.fr">contact@douceursdalyssia.fr</a></div>
+            <div>📞 Téléphone : <a href="tel:+33612345678">06 12 34 56 78</a></div>
+            <div>Adresse : 12 rue des Peluches, 69000 Lyon</div>
+        </div>
+        <div class="contact-socials">
+            <a href="https://www.instagram.com/lesdouceursdalyssia" target="_blank" title="Instagram"><span>📸</span></a>
+            <a href="https://www.facebook.com/lesdouceursdalyssia" target="_blank" title="Facebook"><span>📘</span></a>
+            <a href="https://wa.me/33612345678" target="_blank" title="WhatsApp"><span>💬</span></a>
+        </div>
+      </div>
+    </main>
+    <footer>
+        <div class="container">
+            <small>&copy; 2025 Les Douceurs d’Alyssia — Créations uniques en laine | SIRET : [98902470800012]</small>
+        </div>
+    </footer>
+<script>
+function majBadgePanier() {
+    const badge = document.getElementById('cart-count');
+    if (!badge) return;
+    const panier = JSON.parse(localStorage.getItem('panier') || '[]');
+    badge.textContent = panier.length;
+    badge.style.display = panier.length > 0 ? 'inline-flex' : 'none';
+}
+document.getElementById('cart-icon')?.addEventListener('click', function() {
+    window.location.href = 'panier.html';
+});
+majBadgePanier();
+
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let nom = document.getElementById('nom-contact').value.trim();
+    let email = document.getElementById('email-contact').value.trim();
+    let sujet = document.getElementById('sujet-contact').value.trim();
+    let message = document.getElementById('message-contact').value.trim();
+    if (nom && email && sujet && message) {
+        document.getElementById('contact-success').style.display = 'block';
+        setTimeout(() => {
+          document.getElementById('contact-success').style.display = 'none';
+          document.getElementById('contact-form').reset();
+        }, 3200);
+    }
+});
+</script>
+</body>
+</html>

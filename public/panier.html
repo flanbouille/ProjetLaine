@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Votre panier – Les Douceurs d’Alyssia</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+    :root {
+        --bleu-pastel: #A8DADC;
+        --blanc-casse: #F8F9FA;
+        --bleu-gris: #BFD7EA;
+        --rose-poudre: #F7CAC9;
+        --beige-clair: #EFE6DD;
+        --lavande: #BFBBD8;
+    }
+    body {
+        background: var(--blanc-casse);
+        color: #333;
+        font-family: 'Quicksand', 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .header-flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2.5em;
+    }
+    .logo-badge {
+        margin-left: 0;
+        margin-right: 0;
+        order: 1;
+        height: 100px;
+        width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    .logo-badge img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        z-index: 2;
+        position: relative;
+        display: block;
+    }
+    .header-title-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        order: 0;
+    }
+    .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        position: relative;
+    }
+    .cart-zone {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+    .cart-icon {
+        font-size: 2em;
+        cursor: pointer;
+        position: relative;
+    }
+    .cart-badge {
+        position: absolute;
+        top: -8px;
+        right: -12px;
+        background: #e74c3c;
+        color: #fff;
+        border-radius: 50%;
+        min-width: 22px;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1em;
+        box-shadow: 0 2px 8px #eae6f7;
+        z-index: 10;
+        transition: opacity 0.2s;
+    }
+    .panier-layout {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 600px;
+        margin: 40px auto 0 auto;
+    }
+    .panier-content {
+        background: #fff;
+        border-radius: 24px;
+        box-shadow: 0 4px 32px #eae6f7;
+        padding: 32px 36px 32px 36px;
+        min-width: 340px;
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        animation: fadein 0.8s;
+    }
+    @keyframes fadein {
+        from { opacity: 0; transform: translateY(20px);}
+        to { opacity: 1; transform: translateY(0);}
+    }
+    h2 {
+        margin-top: 0;
+        color: #442b7b;
+        font-family: 'Quicksand', 'Segoe UI', sans-serif;
+        font-size: 2em;
+        text-align: center;
+    }
+    ul.panier-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    ul.panier-list li {
+        padding: 12px 0;
+        border-bottom: 1px solid #ece6f7;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.08em;
+        gap: 12px;
+    }
+    .panier-vide {
+        color: #aaa;
+        font-size: 1.2em;
+        text-align: center;
+        margin: 40px 0;
+    }
+    .actions-panier {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+    }
+    .btn-quantite, .btn-poubelle {
+        background: none;
+        border: none;
+        font-size: 1.25em;
+        padding: 3px 7px;
+        border-radius: 7px;
+        cursor: pointer;
+        color: #655e9f;
+        transition: background 0.18s, color 0.18s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-quantite:hover {
+        background: var(--bleu-gris);
+        color: #442b7b;
+    }
+    .btn-poubelle {
+        color: #e74c3c;
+        margin-left: 8px;
+        font-size: 1.1em;
+    }
+    .btn-poubelle:hover {
+        background: #fae0e0;
+        color: #c0392b;
+    }
+    .nombre-quantite {
+        min-width: 22px;
+        text-align: center;
+        font-weight: bold;
+        color: #442b7b;
+        font-size: 1.05em;
+        margin: 0 3px;
+        display: inline-block;
+    }
+    .image-produit {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-right: 10px;
+        box-shadow: 0 2px 8px #ece6f7;
+        background: #f8f5ff;
+        flex-shrink: 0;
+        display: inline-block;
+    }
+    .nom-produit-panier {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+    }
+    .btn-retour {
+        display: inline-block;
+        margin-top: 24px;
+        padding: 10px 18px;
+        background: linear-gradient(90deg, #d3c2f7 30%, #e7e0f6 100%);
+        color: #442b7b;
+        border-radius: 10px;
+        border: none;
+        font-weight: 500;
+        font-size: 1em;
+        cursor: pointer;
+        box-shadow: 0 2px 8px #ece6ff;
+        text-decoration: none;
+        transition: background 0.2s, color 0.2s;
+        text-align: center;
+    }
+    .btn-retour:hover {
+        background: #c5aefb;
+        color: #fff;
+    }
+    .panier-total {
+        text-align: right;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #442b7b;
+        margin-top: 12px;
+        margin-bottom: 6px;
+    }
+    /* Coffret déroulant */
+    .coffret-arrow {
+        cursor: pointer;
+        font-size: 1.3em;
+        margin-left: 7px;
+        transition: transform 0.2s;
+    }
+    .coffret-arrow.open {
+        transform: rotate(90deg);
+    }
+    .coffret-content {
+        display: none;
+        margin-left: 22px;
+        margin-top: 7px;
+        background: #f8f5ff;
+        border-radius: 10px;
+        padding: 7px 12px;
+        box-shadow: 0 2px 8px #eae6f7;
+    }
+    .coffret-article-img {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        margin-right: 6px;
+        object-fit: cover;
+        background: #fff;
+        box-shadow: 0 2px 6px #ece6ff;
+        vertical-align: middle;
+    }
+    .coffret-article-item {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-bottom: 6px;
+        font-size: 0.98em;
+    }
+    @media (max-width: 900px) {
+        .header-flex { gap: 1em; }
+        .logo-badge { height: 60px; width: 60px; }
+        .panier-content { padding: 16px 5vw; }
+        .image-produit { width: 36px; height: 36px; }
+    }
+    </style>
+</head>
+<body>
+    <header>
+      <div class="container header-flex">
+        <div class="header-title-group">
+          <h1 class="site-title">La douce collection d'Alyssia</h1>
+        </div>
+        <div class="logo-badge">
+          <img src="/static/images/logo.png" alt="Logo Les Douceurs d’Alyssia">
+        </div>
+      </div>
+      <div class="container">
+        <nav class="main-nav">
+            <a href="index.html">Accueil</a>
+            <a href="collections.html">Collections</a>
+            <a href="personnalisation.html">Personnalisation</a>
+            <a href="contact.html">Contact</a>
+            <a href="a-propos.html">À propos</a>
+            <span class="cart-zone">
+                <span class="cart-icon" id="cart-icon" title="Voir le panier">🛒</span>
+                <span class="cart-badge" id="cart-count">0</span>
+            </span>
+        </nav>
+      </div>
+    </header>
+    <main>
+        <div class="panier-layout">
+            <div class="panier-content">
+                <h2>Votre panier</h2>
+                <ul class="panier-list" id="panier-list"></ul>
+                <div class="panier-total" id="panier-total"></div>
+                <div class="panier-vide" id="panier-vide" style="display:none;">Votre panier est vide.</div>
+                <a href="collections.html" class="btn-retour">← Retour à la boutique</a>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <small>&copy; 2025 Les Douceurs d’Alyssia</small>
+        </div>
+    </footer>
+    <script>
+    // ==============================
+    // Script JS Panier – Coffret déroulant & gestion du badge
+    // ==============================
+
+    function majBadgePanier() {
+        const badge = document.getElementById('cart-count');
+        if (!badge) return;
+        const panier = JSON.parse(localStorage.getItem('panier') || '[]');
+        badge.textContent = panier.length;
+        badge.style.display = panier.length > 0 ? 'inline-flex' : 'none';
+    }
+
+    document.getElementById('cart-icon').addEventListener('click', function() {
+        window.location.href = 'panier.html';
+    });
+
+    // Regroupe les produits identiques hors coffret
+    function regrouperPanier() {
+        const panier = JSON.parse(localStorage.getItem('panier') || '[]');
+        const produits = {};
+        panier.forEach(item => {
+            // Coffret : ne pas regrouper, chaque coffret est une entrée unique
+            if (item.type === "coffrets") {
+                produits['coffret-' + Math.random().toString(36).substr(2, 9)] = item;
+            } else {
+                const key = (item.id || '') + '|' + item.nom + '|' + (item.img || '') + '|' + (item.prix || '');
+                if (!produits[key]) {
+                    produits[key] = { ...item, quantite: 1, prix: parseFloat(item.prix || 0) };
+                } else {
+                    produits[key].quantite++;
+                }
+            }
+        });
+        return produits;
+    }
+
+    function afficherPanier() {
+        const liste = document.getElementById('panier-list');
+        const vide = document.getElementById('panier-vide');
+        liste.innerHTML = '';
+        const produits = regrouperPanier();
+        const keys = Object.keys(produits);
+
+        if (keys.length === 0) {
+            vide.style.display = "";
+            liste.style.display = "none";
+            afficherTotal(0);
+            return;
+        } else {
+            vide.style.display = "none";
+            liste.style.display = "";
+        }
+
+        keys.forEach((key, idx) => {
+            const item = produits[key];
+
+            // COFFRET : affichage spécial
+            if (item.type === "coffrets") {
+                const li = document.createElement('li');
+                li.style.flexDirection = "column";
+                li.style.alignItems = "flex-start";
+
+                // Ligne principale du coffret
+                const ligne = document.createElement('div');
+                ligne.style.display = "flex";
+                ligne.style.alignItems = "center";
+                ligne.style.width = "100%";
+
+                // Titre coffret
+                const nomSpan = document.createElement('span');
+                nomSpan.innerHTML = `<b>Coffret</b>`;
+
+                // Flèche déroulante
+                const arrow = document.createElement('span');
+                arrow.className = "coffret-arrow";
+                arrow.innerHTML = "&#9654;";
+                arrow.title = "Afficher le contenu";
+                arrow.onclick = function() {
+                    const contentDiv = li.querySelector('.coffret-content');
+                    if (contentDiv.style.display === "block") {
+                        contentDiv.style.display = "none";
+                        arrow.classList.remove("open");
+                    } else {
+                        contentDiv.style.display = "block";
+                        arrow.classList.add("open");
+                    }
+                };
+
+                // Prix
+                const prixSpan = document.createElement('span');
+                prixSpan.style.marginLeft = "12px";
+                prixSpan.textContent = `${item.prix ? item.prix.toLocaleString('fr-FR', {minimumFractionDigits:2}) + " €" : ""}`;
+
+                // Actions poubelle (supprimer ce coffret)
+                const actions = document.createElement('span');
+                actions.className = "actions-panier";
+                const btnPoubelle = document.createElement('button');
+                btnPoubelle.className = "btn-poubelle";
+                btnPoubelle.type = "button";
+                btnPoubelle.title = "Supprimer ce coffret";
+                btnPoubelle.innerHTML = "🗑️";
+                btnPoubelle.onclick = function() {
+                    supprimerCoffret(idx);
+                };
+                actions.appendChild(btnPoubelle);
+
+                ligne.appendChild(nomSpan);
+                ligne.appendChild(arrow);
+                ligne.appendChild(prixSpan);
+                ligne.appendChild(actions);
+
+                // Contenu déroulant
+                const contentDiv = document.createElement('div');
+                contentDiv.className = "coffret-content";
+                if (item.articles && item.articles.length) {
+                    item.articles.forEach(a => {
+                        const artDiv = document.createElement('div');
+                        artDiv.className = "coffret-article-item";
+                        artDiv.innerHTML =
+                            `<img src="${a.img}" class="coffret-article-img" alt="${a.nom}"/>${a.nom}`;
+                        contentDiv.appendChild(artDiv);
+                    });
+                } else {
+                    contentDiv.innerHTML = `<div style="color:#999;">Aucun article sélectionné</div>`;
+                }
+                // Carte cadeau dans le coffret
+                if (item.carte) {
+                    const carteDiv = document.createElement('div');
+                    carteDiv.style.marginTop = "10px";
+                    carteDiv.style.background = "#f8f5ff";
+                    carteDiv.style.padding = "7px";
+                    carteDiv.style.borderRadius = "7px";
+                    carteDiv.innerHTML =
+                        `<b>Carte cadeau :</b> ${item.carte.design}<br>
+                        <span style="font-size:0.95em;">${item.carte.texte}</span>`;
+                    contentDiv.appendChild(carteDiv);
+                }
+
+                li.appendChild(ligne);
+                li.appendChild(contentDiv);
+                liste.appendChild(li);
+            } else {
+                // PRODUIT NORMAL
+                const li = document.createElement('li');
+                // Image + nom
+                const nomDiv = document.createElement('span');
+                nomDiv.className = 'nom-produit-panier';
+                if(item.img) {
+                    const img = document.createElement('img');
+                    img.className = "image-produit";
+                    img.src = item.img;
+                    img.alt = item.nom;
+                    nomDiv.appendChild(img);
+                }
+                const nomTxt = document.createElement('span');
+                nomTxt.textContent = item.nom;
+                nomDiv.appendChild(nomTxt);
+                // Détails personnalisés
+                if(item.couleur) nomDiv.appendChild(document.createTextNode(" - " + item.couleur));
+                if(item.taille) nomDiv.appendChild(document.createTextNode(" - " + item.taille));
+                // Actions (quantité, boutons)
+                const actions = document.createElement('span');
+                actions.className = "actions-panier";
+                // Moins
+                const btnMoins = document.createElement('button');
+                btnMoins.className = "btn-quantite";
+                btnMoins.type = "button";
+                btnMoins.innerHTML = "−";
+                btnMoins.title = "Retirer un";
+                btnMoins.onclick = function() {
+                    retirerUnItem(item.id, item.nom, item.img, item.prix);
+                };
+                // Quantité
+                const spanNb = document.createElement('span');
+                spanNb.className = "nombre-quantite";
+                spanNb.textContent = item.quantite;
+                // Plus
+                const btnPlus = document.createElement('button');
+                btnPlus.className = "btn-quantite";
+                btnPlus.type = "button";
+                btnPlus.innerHTML = "+";
+                btnPlus.title = "Ajouter un";
+                btnPlus.onclick = function() {
+                    ajouterUnItem(item.id, item.nom, item.img, item.prix);
+                };
+                // Poubelle
+                const btnPoubelle = document.createElement('button');
+                btnPoubelle.className = "btn-poubelle";
+                btnPoubelle.type = "button";
+                btnPoubelle.title = "Supprimer tous";
+                btnPoubelle.innerHTML = "🗑️";
+                btnPoubelle.onclick = function() {
+                    supprimerProduit(item.id, item.nom, item.img, item.prix);
+                };
+                actions.appendChild(btnMoins);
+                actions.appendChild(spanNb);
+                actions.appendChild(btnPlus);
+                actions.appendChild(btnPoubelle);
+
+                li.appendChild(nomDiv);
+                li.appendChild(actions);
+
+                // Pixel art (plaids)
+                if(item.pixelArt) {
+                    const pix = document.createElement('div');
+                    pix.innerHTML = `<img src="${item.pixelArt}" style="width:60px;border-radius:7px;margin-top:3px;">`;
+                    li.appendChild(pix);
+                }
+                // Carte cadeau
+                if(item.carte) {
+                    const carteDiv = document.createElement('div');
+                    carteDiv.style.marginTop = "8px";
+                    carteDiv.style.background = "#f8f5ff";
+                    carteDiv.style.padding = "7px";
+                    carteDiv.style.borderRadius = "7px";
+                    carteDiv.innerHTML =
+                        `<b>Carte cadeau :</b> ${item.carte.design}<br>
+                        <span style="font-size:0.95em;">${item.carte.texte}</span>`;
+                    li.appendChild(carteDiv);
+                }
+
+                liste.appendChild(li);
+            }
+        });
+
+        afficherTotal();
+    }
+
+    // Ajoute un exemplaire d'un produit au panier
+    function ajouterUnItem(id, nom, img, prix) {
+        let panier = JSON.parse(localStorage.getItem('panier') || '[]');
+        panier.push({id, nom, img, prix});
+        localStorage.setItem('panier', JSON.stringify(panier));
+        majBadgePanier();
+        afficherPanier();
+    }
+    // Retire un exemplaire d'un produit du panier
+    function retirerUnItem(id, nom, img, prix) {
+        let panier = JSON.parse(localStorage.getItem('panier') || '[]');
+        const idx = panier.findIndex(p => p.id === id && p.nom === nom && p.img === img && p.prix == prix);
+        if (idx > -1) {
+            panier.splice(idx, 1);
+        }
+        localStorage.setItem('panier', JSON.stringify(panier));
+        majBadgePanier();
+        afficherPanier();
+    }
+    // Supprime tous les exemplaires d'un produit du panier
+    function supprimerProduit(id, nom, img, prix) {
+        let panier = JSON.parse(localStorage.getItem('panier') || '[]');
+        panier = panier.filter(p => !(p.id === id && p.nom === nom && p.img === img && p.prix == prix));
+        localStorage.setItem('panier', JSON.stringify(panier));
+        majBadgePanier();
+        afficherPanier();
+    }
+    // Supprime un coffret du panier (par son index d'affichage)
+    function supprimerCoffret(idxAffichage) {
+        let panier = JSON.parse(localStorage.getItem('panier') || '[]');
+        // On compte les coffrets jusqu'à idxAffichage
+        let cpt = -1;
+        let idxCoffret = -1;
+        for(let i=0; i<panier.length; i++) {
+            if(panier[i].type === "coffrets") {
+                cpt++;
+                if(cpt === idxAffichage) { idxCoffret = i; break; }
+            }
+        }
+        if(idxCoffret !== -1) {
+            panier.splice(idxCoffret, 1);
+            localStorage.setItem('panier', JSON.stringify(panier));
+            majBadgePanier();
+            afficherPanier();
+        }
+    }
+    // Affiche le total du panier (prix x quantité)
+    function afficherTotal() {
+        const produits = regrouperPanier();
+        let total = 0;
+        Object.values(produits).forEach(item => {
+            if(item.type === "coffrets") {
+                total += parseFloat(item.prix || 0);
+            } else {
+                total += (parseFloat(item.prix || 0) * item.quantite);
+            }
+        });
+        const totalElem = document.getElementById('panier-total');
+        if (totalElem) {
+            totalElem.textContent = Object.keys(produits).length > 0 ?
+                `Total : ${total.toLocaleString('fr-FR', {minimumFractionDigits:2})} €` : '';
+        }
+    }
+
+    // Initialisation
+    majBadgePanier();
+    afficherPanier();
+    </script>
+</body>
+</html>

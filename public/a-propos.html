@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>À propos – Les Douceurs d’Alyssia</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+    .apropos-layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 38px auto 0 auto;
+      gap: 0;
+      min-height: 600px;
+      justify-content: center;
+    }
+    .main-apropos {
+      max-width: 760px;
+      background: #fff;
+      border-radius: 28px;
+      box-shadow: 0 6px 32px #eae6f7;
+      padding: 44px 34px 36px 34px;
+      position: relative;
+      margin-bottom: 38px;
+      margin-top: 0;
+      animation: fadein 1s;
+      width: 100%;
+    }
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .img-apropos {
+      display: block;
+      margin: 0 auto 18px auto;
+      width: 92px;
+      height: 92px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 2px 12px #eae6f7;
+      border: 3px solid #BFBBD8;
+      background: #f7f6fa;
+    }
+    .signature-apropos {
+      font-family: 'Pacifico', cursive;
+      color: #ba7a9e;
+      font-size: 1.5em;
+      text-align: right;
+      margin-top: -18px;
+      margin-bottom: 24px;
+      letter-spacing: 1.5px;
+    }
+    .titre-apropos {
+      font-size: 2.1em;
+      font-weight: bold;
+      color: #7f5fc5;
+      margin-bottom: 20px;
+      margin-top: 6px;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .citation-apropos {
+      background: #f7e0fa;
+      border-left: 5px solid #be91ca;
+      font-style: italic;
+      color: #a674b2;
+      padding: 12px 16px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      font-size: 1.09em;
+      text-align: center;
+      max-width: 410px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 2px 8px #f6e6fd77;
+    }
+    .txt-apropos {
+      font-size: 1.13em;
+      line-height: 1.7;
+      margin-bottom: 26px;
+      color: #3a2a4f;
+      text-align: justify;
+    }
+    .apropos-section-title {
+      font-size: 1.18em;
+      color: #655e9f;
+      font-weight: bold;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .apropos-section-title .icon {
+      font-size: 1.18em;
+    }
+    .apropos-valeurs ul {
+      padding-left: 0px;
+      margin: 0;
+      list-style: none;
+    }
+    .apropos-valeurs li {
+      margin-bottom: 6px;
+      padding-left: 0;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 1.02em;
+    }
+    .apropos-valeurs .icon {
+      color: #d3a7f7;
+      font-size: 1.08em;
+    }
+    .apropos-contact {
+      background: #f7f2fc;
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 20px;
+      color: #472b7b;
+      font-size: 1.06em;
+      box-shadow: 0 2px 10px #eae6f7;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .apropos-contact span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 2px 0;
+    }
+    .apropos-contact .icon {
+      color: #be91ca;
+      font-size: 1.15em;
+      min-width: 18px;
+      display: inline-block;
+      text-align: center;
+    }
+    .apropos-contact a {
+      color: #7a4eaf;
+      text-decoration: underline;
+      transition: color 0.18s;
+    }
+    .apropos-contact a:hover {
+      color: #c16d9e;
+      text-decoration: underline wavy;
+      font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-flex">
+            <div class="header-title-group">
+                <h1 class="site-title">Bienvenue dans ma douce histoire</h1>
+            </div>
+            <div class="logo-badge">
+                <img src="/static/images/logo.png" alt="Logo Les Douceurs d’Alyssia">
+            </div>
+        </div>
+        <div class="container">
+  <nav class="main-nav">
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="collections.html" class="active">Collections</a>
+      <a href="personnalisation.html">Personnalisation</a>
+      <a href="contact.html">Contact</a>
+      <a href="a-propos.html">À propos</a>
+    </div>
+    <div class="cart-zone">
+      <span class="cart-icon" id="cart-icon" title="Voir le panier">🛒</span>
+      <span class="cart-badge" id="cart-count">0</span>
+      <a href="auth.html" title="Se connecter ou créer un compte" class="auth-btn">
+        <span class="auth-icon">👤</span>
+      </a>
+    </div>
+  </nav>
+</div>
+    </header>
+    <main>
+      <div class="apropos-layout">
+        <section class="main-apropos">
+          <img src="/static/images/logo.png" alt="Portrait ou logo Les Douceurs d’Alyssia" class="img-apropos">
+
+          <div class="titre-apropos">À propos</div>
+          <div class="citation-apropos">
+            « Créer pour réchauffer les cœurs, un sourire à la fois »
+          </div>
+          <div class="txt-apropos">
+            Bienvenue chez <strong>Les Douceurs d’Alyssia</strong> !<br>
+            Je m'appelle Alyssia et je suis passionnée par la création artisanale depuis toujours.<br>
+            Chaque peluche, plaid ou coffret que vous découvrez ici est imaginé, conçu et réalisé avec amour, en laine de grande qualité.<br>
+            Mon objectif : apporter douceur et réconfort à chaque moment de vie, offrir des cadeaux uniques et personnalisés qui font vraiment plaisir.<br><br>
+            Je mets un point d’honneur à choisir des matériaux respectueux de l’environnement et à travailler avec soin, pour que chaque création soit à la fois belle, durable et adaptée aux tout-petits.<br>
+            Merci de soutenir l’artisanat local et de partager cette aventure avec moi !
+          </div>
+          <div class="signature-apropos">Alyssia</div>
+          <div class="apropos-section-title"><span class="icon">🧵</span> Mes valeurs</div>
+          <div class="apropos-valeurs">
+            <ul>
+              <li><span class="icon">🤲</span> Créations 100 % faites main</li>
+              <li><span class="icon">🧶</span> Laine certifiée et douce</li>
+              <li><span class="icon">💌</span> Personnalisation sur demande</li>
+              <li><span class="icon">🌱</span> Respect de l’environnement</li>
+              <li><span class="icon">💬</span> Écoute et conseils</li>
+            </ul>
+          </div>
+          <div class="apropos-section-title"><span class="icon">📬</span> Contact & réseaux</div>
+          <div class="apropos-contact">
+            <span><span class="icon">📧</span><strong>Email :</strong> alyssia.creations@gmail.com</span>
+            <span><span class="icon">📸</span><strong>Instagram :</strong> <a href="https://instagram.com/lesdouceursdalyssia" target="_blank">@lesdouceursdalyssia</a></span>
+            <span><span class="icon">📘</span><strong>Facebook :</strong> <a href="https://facebook.com/lesdouceursdalyssia" target="_blank">Les Douceurs d’Alyssia</a></span>
+            <span><span class="icon">🆔</span><strong>SIRET :</strong> [Numéro à compléter]</span>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer>
+        <div class="container">
+            <small>&copy; 2025 Les Douceurs d’Alyssia — Créations uniques en laine | SIRET : [98902470800012]</small>
+        </div>
+    </footer>
+<script>
+function majBadgePanier() {
+    const badge = document.getElementById('cart-count');
+    if (!badge) return;
+    const panier = JSON.parse(localStorage.getItem('panier') || '[]');
+    badge.textContent = panier.length;
+    badge.style.display = panier.length > 0 ? 'inline-flex' : 'none';
+}
+document.getElementById('cart-icon')?.addEventListener('click', function() {
+    window.location.href = 'panier.html';
+});
+majBadgePanier();
+</script>
+</body>
+</html>

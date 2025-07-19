@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil – Les Douceurs d’Alyssia</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-flex">
+            <div class="header-title-group">
+                <h1 class="site-title">La douce collection d'Alyssia</h1>
+            </div>
+            <div class="logo-badge">
+                <img src="/static/images/logo.png" alt="Logo Les Douceurs d’Alyssia">
+            </div>
+        </div>
+        <div class="container">
+            <nav class="main-nav">
+  <div class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="collections.html" class="active">Collections</a>
+    <a href="personnalisation.html">Personnalisation</a>
+    <a href="contact.html">Contact</a>
+    <a href="a-propos.html">À propos</a>
+  </div>
+  <div class="cart-zone">
+    <span class="cart-icon" id="cart-icon" title="Voir le panier">🛒</span>
+    <span class="cart-badge" id="cart-count">0</span>
+    <a href="auth.html" title="Se connecter ou créer un compte" class="auth-btn">
+      <span class="auth-icon">👤</span>
+    </a>
+  </div>
+</nav>
+        </div>
+    </header>
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-bloc">
+            <div class="hero-txt">
+                <div class="hero-titre">Des objets en laine faits main,<br>pour petits et grands rêveurs</div>
+                <div class="hero-desc">
+                    Découvrez nos peluches douces, nos plaids réconfortants et nos accessoires personnalisés, confectionnés avec amour en France.
+                </div>
+                <a href="collections.html" class="cta">Explorer les collections</a>
+            </div>
+            <div class="hero-img">
+                <img src="/static/images/coffret/titi.png" alt="Création laine">
+            </div>
+        </section>
+        <!-- NOUVEAUTÉS SLIDER -->
+        <section class="nouveautes">
+            <div class="titre-nouveautes">
+                <span class="etoile">★</span> <span class="mot-nouveautes">Avis client</span> <span class="etoile">★</span>
+            </div>
+            <div style="background: linear-gradient(135deg, #e7e0f6 80%, #f3e7fa 100%); border-radius: 24px; box-shadow: 0 4px 32px #eae6f7; padding: 36px 0; max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+                <div class="nouveautes-slider-row" id="slider">
+                    <div class="slider-imgbox">
+                        <img id="slider-img" src="/static/images/avis/tortue.png" alt="louna la tortue">
+                    </div>
+                    <div class="slider-avisbox" id="slider-message">
+                        <span class="guillemets">“</span>
+                        <div class="contenu" id="slider-content">ils sont parfait je t'enverrais une photo apres et franchement je ne regrette pas ma commande y'en auras d'autres c'est sur</div>
+                        <div class="auteur" id="slider-author">— Issahaka M.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+		<!-- CALENDRIER MENSUEL PASTEL -->
+        <section class="calendrier-mensuel">
+          <h2 class="titre-calendrier">🗓️ Agenda d'Alyssia – Août 2025</h2>
+          <div class="calendrier-grille">
+            <div class="jour">Lun</div>
+            <div class="jour">Mar</div>
+            <div class="jour">Mer</div>
+            <div class="jour">Jeu</div>
+            <div class="jour">Ven</div>
+            <div class="jour">Sam</div>
+            <div class="jour">Dim</div>
+            <!-- Semaine 1 -->
+            <div class="case"></div>
+            <div class="case"></div>
+            <div class="case"></div>
+            <div class="case">1</div>
+            <div class="case">2</div>
+            <div class="case">3</div>
+            <div class="case">4</div>
+            <!-- Semaine 2 -->
+            <div class="case">5</div>
+            <div class="case">6</div>
+            <div class="case">7</div>
+            <div class="case">8</div>
+            <div class="case">9</div>
+            <div class="case">10
+              <div class="evt">Marché des créateurs<br>
+                <span class="evt-lieu">Parc Jean-Baptiste Lebas, Lille</span><br>
+                <span class="evt-horaire">9h-18h</span>
+              </div>
+            </div>
+            <div class="case">11</div>
+            <!-- Semaine 3 -->
+            <div class="case">12</div>
+            <div class="case">13</div>
+            <div class="case">14</div>
+            <div class="case">15</div>
+            <div class="case">16</div>
+            <div class="case">17</div>
+            <div class="case">18</div>
+            <!-- Semaine 4 -->
+            <div class="case">19</div>
+            <div class="case">20</div>
+            <div class="case">21
+              <div class="evt">Expo Douceurs d'Alyssia<br>
+                <span class="evt-lieu">Médiathèque, Roubaix</span><br>
+                <span class="evt-horaire">Toute la journée</span>
+              </div>
+            </div>
+            <div class="case">22</div>
+            <div class="case">23</div>
+            <div class="case">24
+              <div class="evt important">Atelier crochet<br>
+                <span class="evt-lieu">Laine & Café, Lille</span><br>
+                <span class="evt-horaire">14h-17h</span>
+              </div>
+            </div>
+            <div class="case">25</div>
+            <!-- Semaine 5 -->
+            <div class="case">26</div>
+            <div class="case">27</div>
+            <div class="case">28</div>
+            <div class="case">29</div>
+            <div class="case">30</div>
+            <div class="case">31</div>
+            <div class="case"></div>
+          </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <small>&copy; 2025 Les Douceurs d’Alyssia — Créations uniques en laine | SIRET : [98902470800012]</small>
+        </div>
+    </footer>
+<script>
+// ---------------------- SLIDER NOUVEAUTES CLIENT+IMAGE ----------------------
+const sliderData = [
+  {
+    img: "/static/images/Client/issac.png",
+    alt: "louna la tortue",
+    msg: "ils sont parfait je t'enverrais une photo apres et franchement je ne regrette pas ma commande y'en auras d'autres c'est sur",
+    auteur: "— Issahaka M.",
+    taille: "moyenne"
+  },
+  {
+    img: "/static/images/Client/poseidon.png",
+    alt: "quentin le pingouin",
+    msg: "Mon fils a tout de suite adopté ce pingouin, il ne le quitte plus !",
+    auteur: "— Thierry D.",
+    taille: "grande"
+  },
+  {
+    img: "/static/images/Client/knight.png",
+    alt: "je t'aime ninou",
+    msg: "Le doudou personnalisé est d'une douceur incroyable, un gros coup de cœur.",
+    auteur: "— Kevin B.",
+    taille: "moyenne"
+  }
+];
+
+let sliderIndex = 0;
+const sliderImg = document.getElementById('slider-img');
+const sliderContent = document.getElementById('slider-content');
+const sliderAuthor = document.getElementById('slider-author');
+const sliderMessage = document.getElementById('slider-message');
+
+function showSlider(i) {
+  sliderImg.classList.remove('fade');
+  sliderMessage.classList.remove('fade');
+  // Gère la taille
+  sliderImg.classList.remove('petite', 'moyenne', 'grande');
+  if (sliderData[i].taille) {
+    sliderImg.classList.add(sliderData[i].taille);
+  }
+  // Image, texte, etc.
+  sliderImg.src = sliderData[i].img;
+  sliderImg.alt = sliderData[i].alt;
+  sliderContent.innerHTML = sliderData[i].msg;
+  sliderAuthor.innerHTML = sliderData[i].auteur;
+  sliderImg.classList.add('fade');
+  sliderMessage.classList.add('fade');
+}
+
+setInterval(() => {
+  sliderIndex = (sliderIndex + 1) % sliderData.length;
+  showSlider(sliderIndex);
+}, 5000);
+showSlider(sliderIndex);
+
+// ---------------------- PANIER BADGE ----------------------
+function majBadgePanier() {
+    const badge = document.getElementById('cart-count');
+    if (!badge) return;
+    const panier = JSON.parse(localStorage.getItem('panier') || '[]');
+    badge.textContent = panier.length;
+    badge.style.display = panier.length > 0 ? 'inline-flex' : 'none';
+}
+majBadgePanier();
+
+document.getElementById('cart-icon')?.addEventListener('click', function() {
+    window.location.href = 'panier.html';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+@media (max-width: 900px) {
+    .header-flex {
+        gap: 1em;
+    }
+    .logo-badge {
+        height: 60px;
+        width: 60px;
+        padding: 6px;
+        /* PAS de margin-left ici non plus ! */
+        transform: translateY(8px);
+    }
+    .logo-badge img {
+        width: 100%;
+        height: 100%;
+    }
+}

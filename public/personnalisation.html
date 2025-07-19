@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Personnalisation – Les Douceurs d’Alyssia</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+    body {
+        background: #F8F9FA;
+        color: #333;
+        font-family: 'Quicksand', 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .header-flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2em;
+    }
+    .logo-badge {
+        margin-left: 0;
+        margin-right: 0;
+        order: 1;
+        height: 100px;
+        width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    .logo-badge img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    .header-title-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .collections-layout {
+        display: flex;
+        max-width: 1100px;
+        margin: 38px auto 0 auto;
+        gap: 28px;
+        min-height: 540px;
+    }
+    .sidebar-cat {
+        width: 170px;
+        background: linear-gradient(135deg, #e7e0f6 80%, #f3e7fa 100%);
+        border-radius: 14px;
+        padding: 16px 8px;
+        box-shadow: 0 3px 22px #eae6f7;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+    }
+    .sidebar-cat .cat-title {
+        font-size: 1.06em;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #6c62a5;
+    }
+    .cat-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .cat-list li {
+        margin-bottom: 6px;
+    }
+    .cat-btn {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        width: 100%;
+        padding: 6px 10px;
+        font-size: 0.96em;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: none;
+        color: #655e9f;
+        transition: background 0.2s, color 0.2s;
+        outline: none;
+        font-family: inherit;
+    }
+    .cat-btn.active,
+    .cat-btn:hover {
+        background: #e0d3f8;
+        color: #442b7b;
+        font-weight: bold;
+        box-shadow: 0 2px 9px #e7e0f6;
+    }
+    .collections-content {
+        flex: 1;
+        padding: 14px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+        min-width: 0;
+    }
+    .perso-tabs {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 10px;
+    }
+    .perso-tab-btn {
+        background: #BFBBD8;
+        color: #442b7b;
+        font-weight: 500;
+        border-radius: 11px 11px 0 0;
+        padding: 6px 15px;
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+        font-family: inherit;
+        outline: none;
+        font-size: 0.98em;
+        box-shadow: 0 2px 7px #eae6f7;
+        margin-bottom: -1px;
+    }
+    .perso-tab-btn.active,
+    .perso-tab-btn:hover {
+        background: #F7CAC9;
+        color: #7a4e01;
+        box-shadow: 0 3px 10px #e7e0f6;
+        font-weight: bold;
+    }
+    .perso-section-title {
+        font-family: 'Quicksand', 'Segoe UI', Arial, sans-serif;
+        font-weight: 700;
+        font-size: 1.07em;
+        color: #2b2565;
+        margin-bottom: 8px;
+    }
+    .collection-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        justify-content: flex-start;
+        min-height: 90px;
+    }
+    .card-prod {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px #eae6f7;
+        padding: 8px 4px 8px 4px;
+        width: 110px;
+        min-width: 90px;
+        max-width: 140px;
+        min-height: 130px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .card-prod:hover {
+        box-shadow: 0 6px 18px #beaee9cc;
+        transform: scale(1.03) translateY(-5px);
+        z-index: 2;
+    }
+    .card-prod img {
+        width: 55px;
+        height: 55px;
+        border-radius: 9px;
+        object-fit: cover;
+        background: #f8f5ff;
+        margin-bottom: 7px;
+        box-shadow: 0 2px 7px #ece6ff;
+    }
+    .card-nom {
+        font-size: 0.97em;
+        font-weight: bold;
+        color: #442b7b;
+        margin-bottom: 2px;
+        margin-top: 2px;
+        text-align: center;
+    }
+    .card-prix {
+        font-size: 0.91em;
+        color: #442b7b;
+        font-weight: bold;
+        margin-bottom: 6px;
+        margin-top: 0;
+        letter-spacing: 0.2px;
+        text-align: center;
+    }
+    .btn-personnaliser {
+        margin-top: auto;
+        background: linear-gradient(90deg, #d3c2f7 30%, #e7e0f6 100%);
+        color: #442b7b;
+        padding: 6px 10px;
+        border-radius: 7px;
+        border: none;
+        font-weight: 500;
+        font-size: 0.96em;
+        cursor: pointer;
+        box-shadow: 0 2px 7px #ece6ff;
+        transition: background 0.2s, color 0.2s;
+    }
+    .btn-personnaliser:hover {
+        background: #c5aefb;
+        color: #fff;
+    }
+    .perso-panel {
+      position: fixed;
+      top: 0; right: 0;
+      height: 100vh;
+      width: 340px;
+      max-width: 97vw;
+      background: #fff;
+      box-shadow: -2px 0 22px #c5b8e6cc;
+      z-index: 1001;
+      transform: translateX(110%);
+      transition: transform 0.35s cubic-bezier(.5,0,.5,1), box-shadow 0.25s;
+      display: flex;
+      flex-direction: column;
+      pointer-events: none;
+    }
+    .perso-panel.open {
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+    .perso-panel-content {
+      padding: 21px 12px 12px 12px;
+      overflow-y: auto;
+      height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .close-panel {
+      position: absolute;
+      top: 6px; right: 6px;
+      background: none;
+      border: none;
+      font-size: 1.6em;
+      color: #c2b6e2;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .color-square {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #ece6ff;
+      border: 2px solid #eee;
+      transition: outline 0.2s, border 0.2s;
+      display: inline-block;
+    }
+    .color-square.selected {
+      outline: 2px solid #b6a2e1;
+      border: 2px solid #b6a2e1;
+    }
+    .taille-btn {
+      border: none;
+      background: #f7f2fc;
+      color: #442b7b;
+      border-radius: 8px;
+      padding: 4px 9px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.94em;
+      box-shadow: 0 2px 6px #ece6ff;
+      transition: background 0.18s;
+      margin-bottom: 2px;
+    }
+    .taille-btn.selected {
+      background: #e7e0f6;
+    }
+    .prix-total-box {
+      font-size:0.95em; font-weight:bold; color:#442b7b; margin:7px 0 12px 0; text-align:center;
+    }
+    .carte-cadeau-zone {
+      margin-bottom: 12px;
+    }
+    .carte-cadeau-zone label {
+      font-weight:600; display:flex; align-items:center;gap:12px;margin-bottom:5px;
+    }
+    .carte-cadeau-options {
+      display:none; margin-left:8px; font-size:0.95em;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+      vertical-align: middle;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #e7e0f6;
+      transition: .3s;
+      border-radius: 24px;
+      box-shadow: 0 2px 8px #ebe6f6;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px; width: 18px;
+      left: 3px; bottom: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: .3s;
+      box-shadow: 0 2px 9px #cac4e7;
+    }
+    .switch input:checked + .slider {
+      background: #F7CAC9;
+    }
+    .switch input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+    .pixel-art-upload {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+    .pixel-art-upload label {
+      font-weight: 600;
+      margin-bottom: 3px;
+      color: #472b7b;
+    }
+    .pixel-art-preview {
+      margin-top: 7px;
+      max-width: 120px;
+      max-height: 120px;
+      border: 1.5px solid #ece6ff;
+      border-radius: 7px;
+      background: #f8f5ff;
+      box-shadow: 0 2px 8px #ece6ff;
+    }
+    .coffret-articles-zone {
+      margin-bottom: 14px;
+    }
+    .coffret-articles-zone label {
+      font-weight:600; display:block; margin-bottom:6px; color:#472b7b;
+    }
+    .coffret-articles-list {
+      display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 7px;
+    }
+    .coffret-article-checkbox {
+      background: #f7f2fc;
+      border-radius: 10px;
+      padding: 8px 8px;
+      border: 1.5px solid #e7e0f6;
+      color: #442b7b;
+      cursor: pointer;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 90px;
+      min-height: 120px;
+      text-align: center;
+      transition: box-shadow 0.16s;
+    }
+    .coffret-article-checkbox input[type="checkbox"] {
+      margin-bottom: 4px;
+    }
+    .coffret-article-checkbox img {
+      width: 55px;
+      height: 55px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 7px #ece6ff;
+      background: #f8f5ff;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .coffret-article-checkbox.selected,
+    .coffret-article-checkbox:hover {
+      box-shadow: 0 4px 13px #b9aadf;
+      border: 2px solid #b6a2e1;
+      background: #e7e0f6;
+    }
+    #ajout-panier-notif {
+      display: none;
+      position: fixed;
+      top: 30px;
+      right: 35px;
+      background: #F7CAC9;
+      color: #442b7b;
+      padding: 16px 22px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px #eae6f7;
+      font-size: 1.12em;
+      z-index: 9999;
+      font-weight: bold;
+      animation: fadein 0.7s;
+    }
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(-20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    @media (max-width: 900px) {
+      .collections-layout { flex-direction: column; gap: 0;}
+      .sidebar-cat { width: 100%; flex-direction: row; flex-wrap: wrap; gap: 5px; border-radius: 0 0 11px 11px; }
+      .cat-btn { width: auto; flex: 1; }
+      .perso-panel { width: 100vw; }
+      .perso-panel-content { padding: 10px 4px; }
+      .collection-cards { gap: 7px; }
+      .card-prod { width: 40vw; min-width: 80px; }
+      .pixel-art-preview { max-width: 70vw; }
+      .coffret-article-checkbox { width: 32vw; min-width: 70px; }
+    }
+    footer {
+        background: #bebbe7;
+        color: #fff;
+        margin-top: 38px;
+        font-size: 0.94em;
+        padding: 20px 0 10px 0;
+        text-align: left;
+        box-shadow: 0 -2px 15px #cac4e7;
+    }
+    footer .container {
+        color: #fff;
+        text-align: left;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-flex">
+            <div class="header-title-group">
+                <h1 class="site-title">La création qui vous ressemble</h1>
+            </div>
+            <div class="logo-badge">
+                <img src="/static/images/logo.png" alt="Logo Les Douceurs d’Alyssia">
+            </div>
+        </div>
+        <div class="container">
+            <nav class="main-nav">
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="collections.html" class="active">Collections</a>
+      <a href="personnalisation.html">Personnalisation</a>
+      <a href="contact.html">Contact</a>
+      <a href="a-propos.html">À propos</a>
+    </div>
+    <div class="cart-zone">
+      <span class="cart-icon" id="cart-icon" title="Voir le panier">🛒</span>
+      <span class="cart-badge" id="cart-count">0</span>
+      <a href="auth.html" title="Se connecter ou créer un compte" class="auth-btn">
+        <span class="auth-icon">👤</span>
+      </a>
+    </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+      <div class="collections-layout">
+        <aside class="sidebar-cat">
+          <div class="cat-title">Catégories</div>
+          <ul class="cat-list">
+            <li><button class="cat-btn active" data-tab="peluches">🧸 Peluches</button></li>
+            <li><button class="cat-btn" data-tab="plaids">🍵 Plaids</button></li>
+            <li><button class="cat-btn" data-tab="coffrets">🎁 Coffrets</button></li>
+            <li><button class="cat-btn" data-tab="jouets">🧩 Jouets</button></li>
+          </ul>
+        </aside>
+        <section class="collections-content">
+          <div class="perso-tabs">
+            <button class="perso-tab-btn active" data-tab="peluches">Peluches</button>
+            <button class="perso-tab-btn" data-tab="plaids">Plaids</button>
+            <button class="perso-tab-btn" data-tab="coffrets">Coffrets</button>
+            <button class="perso-tab-btn" data-tab="jouets">Jouets</button>
+          </div>
+          <div class="perso-tab-content" id="perso-tab-content"></div>
+        </section>
+      </div>
+      <div id="perso-panel" class="perso-panel" tabindex="-1" aria-modal="true" aria-hidden="true">
+        <div class="perso-panel-content">
+          <button class="close-panel" onclick="closePersoPanel()">×</button>
+          <div id="perso-panel-inner"></div>
+        </div>
+      </div>
+      <div id="ajout-panier-notif">Article ajouté au panier !</div>
+    </main>
+    <footer>
+        <div class="container">
+            <small>&copy; 2025 Les Douceurs d’Alyssia — Créations uniques en laine | SIRET : [98902470800012]</small>
+        </div>
+    </footer>
+<script>
+function majBadgePanier() {
+    const badge = document.getElementById('cart-count');
+    if (!badge) return;
+    const panier = JSON.parse(localStorage.getItem('panier') || '[]');
+    badge.textContent = panier.length;
+    badge.style.display = panier.length > 0 ? 'inline-flex' : 'none';
+}
+document.getElementById('cart-icon')?.addEventListener('click', function() {
+    window.location.href = 'panier.html';
+});
+majBadgePanier();
+
+const creations = {
+  peluches: [
+    { nom: "Oscar l’ours", base: "ours", img: "/static/images/peluches/ours.png", prix: { Petit: 24.90, Moyen: 29.90, Grand: 34.90 } },
+    { nom: "Quentin le pingouin", base: "pinguin", img: "/static/images/peluches/pinguin.png", prix: { Petit: 29.99, Moyen: 34.99, Grand: 39.99 } },
+    { nom: "Louna la tortue", base: "tortue", img: "/static/images/peluches/tortue.png", prix: { Petit: 22.50, Moyen: 27.50, Grand: 32.50 } }
+  ],
+  plaids: [
+    { nom: "Plaid douceur", base: "softplaid", img: "/static/images/plaids/softplaid.png", prix: { Petit: 45.00, Moyen: 55.00, Grand: 65.00 } },
+    { nom: "Plaid pastel", base: "plaid-pastel", img: "/static/images/plaids/plaid-pastel.png", prix: { Petit: 39.90, Moyen: 49.90, Grand: 59.90 } }
+  ],
+  coffrets: [
+    { nom: "Coffret naissance", base: "box-naissance", img: "/static/images/naissance/box-naissance.png", prix: { Petit: 39.00, Moyen: 44.00, Grand: 49.00 } },
+    { nom: "Coffret surprise", base: "coffret-surprise", img: "/static/images/coffrets/coffret-surprise.png", prix: { Petit: 49.00, Moyen: 59.00, Grand: 69.00 } }
+  ],
+  jouets: [
+    { nom: "Anneau hochet", base: "hochet", img: "/static/images/jouets/hochet.png", prix: { Petit: 18.00, Moyen: 23.00, Grand: 28.00 } },
+    { nom: "Mobile nuage", base: "mobile-nuage", img: "/static/images/jouets/mobile-nuage.png", prix: { Petit: 32.00, Moyen: 36.00, Grand: 40.00 } }
+  ]
+};
+
+const articlesBoutique = [
+  { nom: "Oscar l’ours", img: "/static/images/peluches/ours.png" },
+  { nom: "Quentin le pingouin", img: "/static/images/peluches/pinguin.png" },
+  { nom: "Louna la tortue", img: "/static/images/peluches/tortue.png" },
+  { nom: "Plaid douceur", img: "/static/images/plaids/softplaid.png" },
+  { nom: "Plaid pastel", img: "/static/images/plaids/plaid-pastel.png" },
+  { nom: "Anneau hochet", img: "/static/images/jouets/hochet.png" },
+  { nom: "Mobile nuage", img: "/static/images/jouets/mobile-nuage.png" }
+];
+
+function showNotifAjoutPanier() {
+  const notif = document.getElementById('ajout-panier-notif');
+  if (!notif) return;
+  notif.style.display = "block";
+  setTimeout(() => { notif.style.display = "none"; }, 1400);
+}
+
+function generateUniqueId() {
+  return 'item_' + Math.random().toString(36).substr(2, 9) + "_" + Date.now();
+}
+
+function addToPanier(itemPanier) {
+  if (!itemPanier.id) itemPanier.id = generateUniqueId();
+  let panier = JSON.parse(localStorage.getItem('panier') || '[]');
+  panier.push(itemPanier);
+  localStorage.setItem('panier', JSON.stringify(panier));
+  majBadgePanier();
+  showNotifAjoutPanier();
+}
+
+function getPreviewImg(item, couleur, taille, cat) {
+  if (!couleur || !taille) return item.img;
+  let dossier = cat;
+  return `/static/images/${dossier}/${item.base}_${couleur}_${taille.toLowerCase()}.png`;
+}
+
+function getCardsHTML(cat) {
+  let arr = creations[cat] || [];
+  if (!arr.length) return `<p>Aucune création disponible pour cette catégorie.</p>`;
+  return `<div class="collection-cards">` + arr.map((item, idx) => `
+    <div class="card-prod">
+      <img src="${item.img}" alt="${item.nom}">
+      <div class="card-nom">${item.nom}</div>
+      <div class="card-prix">${item.prix.Petit.toLocaleString('fr-FR', {minimumFractionDigits:2})} €</div>
+      <button class="btn-personnaliser" onclick="openPersoPanel('${cat}', ${idx})">Personnaliser</button>
+    </div>
+  `).join('') + `</div>`;
+}
+
+function switchTab(tab) {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    document.querySelectorAll('.perso-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    document.getElementById('perso-tab-content').innerHTML = `
+      <div class="perso-section-title">Personnalisez votre ${tab}</div>
+      ${getCardsHTML(tab)}
+    `;
+}
+document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        switchTab(btn.dataset.tab);
+    });
+});
+document.querySelectorAll('.perso-tab-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        switchTab(btn.dataset.tab);
+    });
+});
+switchTab('peluches');
+
+function openPersoPanel(cat, idx) {
+  const item = creations[cat][idx];
+  const panel = document.getElementById('perso-panel');
+  const inner = document.getElementById('perso-panel-inner');
+  let selectedColor = null;
+  let selectedTaille = "Petit";
+  let previewImg = item.img;
+
+  let html = `<h2 style="font-size:1.1em; color:#472b7b; margin-bottom: 10px;">Personnalisation de : ${item.nom}</h2>`;
+
+  if (cat === "peluches") {
+    html += `
+    <div style="width:100%; text-align:center;">
+      <img id="img-preview" src="${previewImg}" alt="${item.nom}" style="width:70px;height:70px;border-radius:10px;box-shadow:0 2px 12px #eae6f7;margin-bottom:9px;transition:box-shadow 0.2s;">
+    </div>
+    <div style="margin-bottom:10px;">
+      <div style="font-weight:600;margin-bottom:7px;">Choisis ta couleur</div>
+      <div id="choix-couleur" style="display:flex;gap:8px;margin-bottom:7px;">
+        <div class="color-square" data-color="rouge" style="background:#e74c3c;"></div>
+        <div class="color-square" data-color="bleu" style="background:#3498db;"></div>
+        <div class="color-square" data-color="vert" style="background:#27ae60;"></div>
+      </div>
+    </div>
+    <hr style="border:none;border-top:1.5px solid #eee;margin:9px 0;">
+    <div style="margin-bottom:10px;">
+      <div style="font-weight:600;margin-bottom:7px;">Choisis la taille</div>
+      <div id="choix-taille" style="display:flex;gap:8px;">
+        <button type="button" class="taille-btn selected" data-taille="Petit">Petit</button>
+        <button type="button" class="taille-btn" data-taille="Moyen">Moyen</button>
+        <button type="button" class="taille-btn" data-taille="Grand">Grand</button>
+      </div>
+    </div>
+    <div id="prix-total" class="prix-total-box">
+      Prix total : ${item.prix.Petit.toLocaleString('fr-FR', {minimumFractionDigits:2})} €
+    </div>
+    `;
+  }
+  if (cat === "plaids") {
+    html += `
+    <div class="pixel-art-upload">
+      <label for="pixel-art-input">Ajoute ton image pixel art :</label>
+      <input type="file" id="pixel-art-input" accept="image/png,image/jpeg" />
+      <img id="pixel-art-preview" class="pixel-art-preview" style="display:none;" />
+    </div>
+    <div class="prix-total-box">
+      Prix : ${item.prix.Petit.toLocaleString('fr-FR', {minimumFractionDigits:2})} €
+    </div>
+    `;
+  }
+  if (cat === "coffrets") {
+    html += `
+    <div class="coffret-articles-zone">
+      <label>Incluez les articles de votre choix dans le coffret :</label>
+      <div class="coffret-articles-list">
+        ${articlesBoutique.map(a => `
+          <label class="coffret-article-checkbox">
+            <input type="checkbox" value="${a.nom}">
+            <img src="${a.img}" alt="${a.nom}" />
+            <span style="font-size:0.92em;">${a.nom}</span>
+          </label>
+        `).join('')}
+      </div>
+      <small style="color:#8d82b7;">(Le prix varie selon le nombre et le type d'articles sélectionnés)</small>
+    </div>
+    <div class="prix-total-box" id="coffret-prix-total">
+      Prix : ${item.prix.Petit.toLocaleString('fr-FR', {minimumFractionDigits:2})} € +
+      prix des articles
+    </div>
+    `;
+  }
+  if (cat === "jouets") {
+    html += `
+    <div style="margin-bottom:10px;">
+      <div style="font-weight:600;margin-bottom:7px;">Choisis la couleur du jouet</div>
+      <div id="choix-couleur" style="display:flex;gap:8px;margin-bottom:7px;">
+        <div class="color-square" data-color="rouge" style="background:#e74c3c;"></div>
+        <div class="color-square" data-color="bleu" style="background:#3498db;"></div>
+        <div class="color-square" data-color="vert" style="background:#27ae60;"></div>
+      </div>
+    </div>
+    <div class="prix-total-box">
+      Prix : ${item.prix.Petit.toLocaleString('fr-FR', {minimumFractionDigits:2})} €
+    </div>
+    `;
+  }
+  html += `
+    <hr style="border:none; border-top:1.5px solid #eee; margin:9px 0;">
+    <div class="carte-cadeau-zone">
+      <label style="display:flex;align-items:center;gap:12px;font-weight:600;">
+        <span>Carte cadeau</span>
+        <span class="switch">
+          <input type="checkbox" id="carte-cadeau-checkbox">
+          <span class="slider"></span>
+        </span>
+      </label>
+      <div id="carte-cadeau-options" class="carte-cadeau-options">
+        <div style="margin-bottom:5px;">
+          <select id="design-carte" style="padding:3px 6px;">
+            <option value="anniversaire">Anniversaire</option>
+            <option value="naissance">Naissance</option>
+            <option value="neutre">Neutre</option>
+          </select>
+        </div>
+        <div>
+          <textarea id="texte-carte" rows="2" style="width:95%; font-size:0.96em;" placeholder="Votre message ici..."></textarea>
+        </div>
+      </div>
+    </div>
+    <hr style="border:none; border-top:1.5px solid #eee; margin:9px 0;">
+    <div>
+      <button type="button" class="btn-ajouter-panier" style="width:100%;margin-top:7px;">Ajouter au panier</button>
+    </div>
+  `;
+
+  inner.innerHTML = html;
+  panel.classList.add('open');
+  panel.setAttribute('aria-hidden', 'false');
+
+  if (cat === "peluches") {
+    const imgPreview = document.getElementById('img-preview');
+    const prixTotalEl = document.getElementById('prix-total');
+    document.querySelectorAll('.color-square').forEach(square => {
+      square.addEventListener('click', function() {
+        document.querySelectorAll('.color-square').forEach(sq => sq.classList.remove('selected'));
+        this.classList.add('selected');
+        selectedColor = this.getAttribute('data-color');
+        if (selectedColor && selectedTaille) {
+          imgPreview.src = getPreviewImg(item, selectedColor, selectedTaille, cat);
+        }
+      });
+    });
+    document.querySelectorAll('.taille-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.taille-btn').forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+        selectedTaille = this.getAttribute('data-taille');
+        prixTotalEl.textContent = `Prix total : ${item.prix[selectedTaille].toLocaleString('fr-FR', {minimumFractionDigits:2})} €`;
+        if (selectedColor && selectedTaille) {
+          imgPreview.src = getPreviewImg(item, selectedColor, selectedTaille, cat);
+        }
+      });
+    });
+  }
+  if (cat === "plaids") {
+    const input = document.getElementById('pixel-art-input');
+    const preview = document.getElementById('pixel-art-preview');
+    input?.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) { preview.style.display = 'none'; return; }
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        preview.src = ev.target.result;
+        preview.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+  if (cat === "coffrets") {
+    const checkboxes = document.querySelectorAll('.coffret-article-checkbox input');
+    const prixTotalEl = document.getElementById('coffret-prix-total');
+    function updatePrix() {
+      let total = item.prix.Petit;
+      checkboxes.forEach(cb => {
+        if (cb.checked) {
+          total += 10;
+          cb.parentElement.classList.add('selected');
+        } else {
+          cb.parentElement.classList.remove('selected');
+        }
+      });
+      prixTotalEl.textContent = `Prix : ${total.toLocaleString('fr-FR', {minimumFractionDigits:2})} €`;
+    }
+    checkboxes.forEach(cb => cb.addEventListener('change', updatePrix));
+  }
+  if (cat === "jouets") {
+    document.querySelectorAll('.color-square').forEach(square => {
+      square.addEventListener('click', function() {
+        document.querySelectorAll('.color-square').forEach(sq => sq.classList.remove('selected'));
+        this.classList.add('selected');
+        selectedColor = this.getAttribute('data-color');
+      });
+    });
+  }
+  document.getElementById('carte-cadeau-checkbox').addEventListener('change', function() {
+    document.getElementById('carte-cadeau-options').style.display = this.checked ? 'block' : 'none';
+  });
+
+  document.querySelector('.btn-ajouter-panier').onclick = function () {
+    let itemPanier = {
+      type: cat,
+      nom: item.nom,
+      img: item.img
+    };
+    if (cat === "peluches") {
+      itemPanier.couleur = document.querySelector('.color-square.selected')?.getAttribute('data-color') || null;
+      itemPanier.taille = document.querySelector('.taille-btn.selected')?.getAttribute('data-taille') || 'Petit';
+      itemPanier.prix = item.prix[itemPanier.taille];
+      itemPanier.id = item.base + "_" + (itemPanier.couleur || "") + "_" + (itemPanier.taille || "") + "_" + generateUniqueId();
+    }
+    if (cat === "plaids") {
+      itemPanier.pixelArt = document.getElementById('pixel-art-preview')?.src || null;
+      itemPanier.prix = item.prix.Petit;
+      itemPanier.id = item.base + "_" + generateUniqueId();
+    }
+    if (cat === "coffrets") {
+      itemPanier.articles = [];
+      document.querySelectorAll('.coffret-article-checkbox input:checked').forEach(cb => {
+        const parent = cb.parentElement;
+        itemPanier.articles.push({
+          nom: cb.value,
+          img: parent.querySelector('img').src
+        });
+      });
+      itemPanier.prix = item.prix.Petit + (itemPanier.articles.length * 10);
+      itemPanier.id = item.base + "_" + (itemPanier.articles.map(a=>a.nom).join("_")) + "_" + generateUniqueId();
+    }
+    if (cat === "jouets") {
+      itemPanier.couleur = document.querySelector('.color-square.selected')?.getAttribute('data-color') || null;
+      itemPanier.prix = item.prix.Petit;
+      itemPanier.id = item.base + "_" + (itemPanier.couleur || "") + "_" + generateUniqueId();
+    }
+    if (document.getElementById('carte-cadeau-checkbox')?.checked) {
+      itemPanier.carte = {
+        design: document.getElementById('design-carte')?.value,
+        texte: document.getElementById('texte-carte')?.value
+      };
+    }
+    addToPanier(itemPanier);
+    closePersoPanel();
+  };
+}
+function closePersoPanel() {
+  const panel = document.getElementById('perso-panel');
+  panel.classList.remove('open');
+  panel.setAttribute('aria-hidden', 'true');
+}
+</script>
+</body>
+</html>

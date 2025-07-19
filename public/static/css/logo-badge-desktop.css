@@ -1,0 +1,27 @@
+.logo-badge {
+    position: relative;
+    background: #fff;
+    border-radius: 50%;
+    border: 4px solid var(--lavande);
+    box-shadow: 0 2px 18px 0 rgba(58,93,126,0.10), 0 0px 0px 3px var(--lavande) inset;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+    /* Surtout PAS de margin-left ici ! */
+    z-index: 1;
+    transition: box-shadow 0.2s;
+    transform: translateY(18px);
+    overflow: hidden;
+}
+.logo-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    z-index: 2;
+    position: relative;
+    display: block;
+}

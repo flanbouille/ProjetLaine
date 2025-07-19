@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Collections – Les Douceurs d’Alyssia</title>
+    <link rel="stylesheet" href="/static/css/style.css">  
+</head>
+<body>
+    <header>
+        <div class="container header-flex">
+            <div class="header-title-group">
+                <h1 class="site-title">La douce collection d'Alyssia</h1>
+            </div>
+            <div class="logo-badge">
+                <img src="/static/images/logo.png" alt="Logo Les Douceurs d’Alyssia">
+            </div>
+        </div>
+        <div class="container">
+  <nav class="main-nav">
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="collections.html" class="active">Collections</a>
+      <a href="personnalisation.html">Personnalisation</a>
+      <a href="contact.html">Contact</a>
+      <a href="a-propos.html">À propos</a>
+    </div>
+    <div class="cart-zone">
+      <span class="cart-icon" id="cart-icon" title="Voir le panier">🛒</span>
+      <span class="cart-badge" id="cart-count">0</span>
+      <a href="auth.html" title="Se connecter ou créer un compte" class="auth-btn">
+        <span class="auth-icon">👤</span>
+      </a>
+    </div>
+  </nav>
+</div>
+    </header>
+
+    <main>
+	   <!-- POPUP PRODUIT avec avis client -->
+<div class="modal-produit" id="modal-produit">
+  <div class="modal-content">
+    <span class="modal-close" id="modal-close">&times;</span>
+    <div class="modal-img-zone">
+      <img id="modal-img" src="" alt="Image produit">
+    </div>
+    <div class="modal-info-zone">
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-desc" id="modal-desc"></div>
+      <div class="modal-price" id="modal-price"></div>
+      <!-- Bloc avis -->
+      <div class="modal-avis">
+        <div id="modal-stars"></div>
+        <div id="modal-comments"></div>
+        <form id="modal-form-avis">
+  <div class="form-stars">
+    <label>Votre note :</label>
+    <span id="form-stars-select"></span>
+  </div>
+  <div>
+    <input id="form-user" type="text" placeholder="Votre prénom ou pseudo" required style="margin-bottom:7px; border-radius:8px; border:1px solid #BFBBD8; padding:5px 10px;">
+  </div>
+  <div>
+    <textarea id="form-comment" placeholder="Votre avis..." rows="2" required></textarea>
+  </div>
+  <button type="submit" class="btn-avis">Envoyer l'avis</button>
+</form>
+      </div>
+    </div>
+  </div>
+</div>
+      <!-- POPUP PRODUIT -->
+      <div class="modal-produit" id="modal-produit">
+        <div class="modal-content">
+          <span class="modal-close" id="modal-close">&times;</span>
+          <div class="modal-img-zone">
+            <img id="modal-img" src="" alt="Image produit">
+          </div>
+          <div class="modal-info-zone">
+            <div class="modal-title" id="modal-title"></div>
+            <div class="modal-desc" id="modal-desc"></div>
+            <div class="modal-price" id="modal-price"></div>
+          </div>
+        </div>
+      </div>
+      <div class="collections-layout">
+        <aside class="sidebar-cat">
+          <div class="cat-title">Catégories</div>
+          <ul class="cat-list">
+            <li><button class="cat-btn active" data-cat="tous">🌟 Tous</button></li>
+            <li><button class="cat-btn" data-cat="peluches">🧸 Peluches tendres</button></li>
+            <li><button class="cat-btn" data-cat="loisirs">🧩 Loisirs</button></li>
+            <li><button class="cat-btn" data-cat="plaids">🍵 Plaids cocooning</button></li>
+            <li><button class="cat-btn" data-cat="naissance">👣 Naissance</button></li>
+            <li><button class="cat-btn" data-cat="coffret">🎁 Coffret</button></li>
+            <li>
+              <button class="cat-btn" data-cat="favoris" id="cat-favoris">
+                ⭐ Favoris (<span id="fav-count">0</span>)
+              </button>
+            </li>
+          </ul>
+        </aside>
+		
+        <section class="collections-content">
+          <div class="intro">
+            <h2>Découvrez toutes nos créations en laine</h2>
+            <p id="categorie-description">
+              Chaque collection est pensée pour apporter douceur, originalité et réconfort. Explorez notre univers et trouvez la création qui vous correspond !
+            </p>
+          </div>
+          <!-- FILTRES ET TRI -->
+          <div class="collections-filters">
+            <label>
+              <input type="checkbox" id="filtre-nouveaute"> Nouveautés
+            </label>
+            <select id="tri-produits">
+              <option value="default">Trier par…</option>
+              <option value="prix-asc">Prix croissant</option>
+              <option value="prix-desc">Prix décroissant</option>
+              <option value="nouveaute">Nouveautés</option>
+              <option value="populaire">Populaires</option>
+            </select>
+             <input type="search" id="search-produits" placeholder="Rechercher un article..." style="padding:0.5em 1em; border-radius:0.7em; border:1px solid #ccc; font-size:1em; width:220px;">
+          </div>
+          <!-- FIN FILTRES ET TRI -->
+        <div class="collection-cards" id="collection-cards">
+          <div class="card-prod"
+           data-cat="peluches"
+           data-prix="9.99"
+           data-prix-avant="19.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/peluches/chatpoulpie.png" alt="Oscar l’ours">
+           <div class="card-nom">Chat Irreverssible</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="1" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="peluches"
+           data-prix="9.99"
+           data-prix-avant="19.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/peluches/lapinblanc.png" alt="Oscar l’ours">
+           <div class="card-nom">Lapin Blanc</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="2" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="peluches"
+           data-prix="9.99"
+           data-prix-avant="19.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/peluches/lapincoeur.png" alt="Oscar l’ours">
+           <div class="card-nom">Lapin Coeur</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="3" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="peluches"
+           data-prix="9.99"
+           data-prix-avant="19.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/peluches/lapinrose.png" alt="Oscar l’ours">
+           <div class="card-nom">Lapin Rose</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="4" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="peluches"
+           data-prix="9.99"
+           data-prix-avant="19.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/peluches/lapinviolet.png" alt="Oscar l’ours">
+           <div class="card-nom">Lapin Violet</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="5" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="peluches"
+           data-prix="9.99"
+           data-prix-avant="19.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/peluches/pinguin.png" alt="Oscar l’ours">
+           <div class="card-nom">Pinguin</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="6" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="peluches"
+           data-prix="9.99"
+           data-prix-avant="19.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/peluches/tortue.png" alt="Oscar l’ours">
+           <div class="card-nom">Tortue</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="7" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="loisirs"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/loisirs/amandine.png" alt="Oscar l’ours">
+           <div class="card-nom">Amandine le Faon</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="8" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="loisirs"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/loisirs/maelle.png" alt="Oscar l’ours">
+           <div class="card-nom">maêlle l'ecureuil</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="9" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="loisirs"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/loisirs/colin.png" alt="Oscar l’ours">
+           <div class="card-nom">colin le Lapin</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="10" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="loisirs"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/loisirs/gaspard.png" alt="Oscar l’ours">
+           <div class="card-nom">Gaspard le Canard</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="11" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="loisirs"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/loisirs/gaston.png" alt="Oscar l’ours">
+           <div class="card-nom">Gaston le Cochon</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="12" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="loisirs"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/loisirs/jasmin.png" alt="Oscar l’ours">
+           <div class="card-nom">Jasmin le Requin</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="13" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="loisirs"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/loisirs/lea.png" alt="Oscar l’ours">
+           <div class="card-nom">Lea la Pieuvre</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="14" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="loisirs"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/loisirs/lilou.png" alt="Oscar l’ours">
+           <div class="card-nom">Lilou la Vache</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="15" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="loisirs"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/loisirs/madeleine.png" alt="Oscar l’ours">
+           <div class="card-nom">Madeleine la Baleine</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="16" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="loisirs"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/loisirs/loulou.png" alt="Oscar l’ours">
+           <div class="card-nom">Loulou le Hibou</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="16" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="loisirs"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/loisirs/minou.png" alt="Oscar l’ours">
+           <div class="card-nom">Minou le Chat</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="17" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="loisirs"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/loisirs/quentin.png" alt="Oscar l’ours">
+           <div class="card-nom">Quentin le Pingouin</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="18" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="loisirs"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/loisirs/renzo.png" alt="Oscar l’ours">
+           <div class="card-nom">Renzo le Renard</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="19" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="loisirs"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/loisirs/lulu.png" alt="Oscar l’ours">
+           <div class="card-nom">Lulu la Tortue</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="20" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="loisirs"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/loisirs/titou.png" alt="Oscar l’ours">
+           <div class="card-nom">Titou le Poussin</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="21" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="plaids"
+           data-prix="34.99"
+           data-prix-avant="49.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/plaids/lapin.png" alt="Oscar l’ours">
+           <div class="card-nom">Lapin</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="22" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="plaids"
+           data-prix="59.99"
+           data-prix-avant="79.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/plaids/daryl.png" alt="Oscar l’ours">
+           <div class="card-nom">daryl</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="23" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="naissance"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/naissance/bonnetourson.png" alt="Oscar l’ours">
+           <div class="card-nom">Bonnet Jaune Ourson</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="24" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="naissance"
+           data-prix="9.99"
+           data-prix-avant="19.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/naissance/brassiererouge.png" alt="Oscar l’ours">
+           <div class="card-nom">Brassiere Rouge Ourson</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="25" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="naissance"
+           data-prix="9.99"
+           data-prix-avant="19.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/naissance/pantalonourson.png" alt="Oscar l’ours">
+           <div class="card-nom">Pantalon Jaune Ourson</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="26" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="naissance"
+           data-prix="9.99"
+           data-prix-avant="19.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/naissance/t-shirt.png" alt="Oscar l’ours">
+           <div class="card-nom">T-shirt Blanc</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="27" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="naissance"
+           data-prix="9.99"
+           data-prix-avant="19.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/naissance/shortbleu.png" alt="Oscar l’ours">
+           <div class="card-nom">Short Bleu</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="28" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="naissance"
+           data-prix="4.99"
+           data-prix-avant="9.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/naissance/chaussure.png" alt="Oscar l’ours">
+           <div class="card-nom">Chaussons Bleu</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="29" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="naissance"
+           data-prix="4.99"
+           data-prix-avant="19.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/naissance/robeapetitpois.png" alt="Oscar l’ours">
+           <div class="card-nom">Robe A Petit Pois</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="30" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="naissance"
+           data-prix="9.99"
+           data-prix-avant="14.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/naissance/hochetrenard.png" alt="Oscar l’ours">
+           <div class="card-nom">hochet renard</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="31" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="naissance"
+           data-prix="9.99"
+           data-prix-avant="14.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/naissance/doudourenard.png" alt="Oscar l’ours">
+           <div class="card-nom">Doudou Renard</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="32" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="coffret"
+           data-prix="44.99"
+           data-prix-avant="59.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/coffret/titi.png" alt="Oscar l’ours">
+           <div class="card-nom">Ensemble Doudou & Hochet</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="33" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="coffret"
+           data-prix="44.99"
+           data-prix-avant="59.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/coffret/ensembleshirttshirt.png" alt="Oscar l’ours">
+           <div class="card-nom">Ensemble Short & T-shirt</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="34" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+		  
+		  <div class="card-prod"
+           data-cat="coffret"
+           data-prix="44.99"
+           data-prix-avant="59.99"
+           data-badge=""
+           data-nouveaute="false"
+           data-populaire="5">
+           <img src="/static/images/coffret/coffretourson.png" alt="Oscar l’ours">
+           <div class="card-nom">Coffret Ourson</div>
+           <div class="card-prix"></div>
+           <button class="btn-favori" title="Ajouter aux favoris" aria-label="Favori"></button>
+           <button class="btn-acheter" data-id="34" data-nom="Oscar l’ours">Ajouter au panier 🛒</button>
+          </div>
+
+        </div>
+            
+            <!-- Ajoute le reste de tes produits ici avec leur data-id -->
+          </div>
+          <div class="pagination" id="pagination"></div>
+        </section>
+      </div>
+    </main>
+    <footer>
+        <div class="container">
+            <small>&copy; 2025 Les Douceurs d’Alyssia — Créations uniques en laine | SIRET : [98902470800012]</small>
+        </div>
+    </footer>
+
+<script>
+const cardsPerPage = 9;
+let currentPage = 1;
+let currentCategory = 'tous';
+
+// Gestion du panier
+function migrerPanier() {
+    let panier = JSON.parse(localStorage.getItem('panier') || '[]');
+    let modif = false;
+    panier = panier.map(p => {
+        if(typeof p.prix === 'undefined') {
+            modif = true;
+            return {...p, prix: 0};
+        }
+        return p;
+    });
+    if(modif) {
+        localStorage.setItem('panier', JSON.stringify(panier));
+    }
+}
+migrerPanier();
+
+function majBadgePanier() {
+    const badge = document.getElementById('cart-count');
+    if (!badge) return;
+    const panier = JSON.parse(localStorage.getItem('panier') || '[]');
+    badge.textContent = panier.length;
+    badge.style.display = panier.length > 0 ? 'inline-flex' : 'none';
+}
+document.querySelectorAll('.btn-acheter').forEach(btn => {
+    btn.addEventListener('click', function(event) {
+        event.preventDefault();
+        const card = this.closest('.card-prod');
+        const id = this.getAttribute('data-id');
+        const nom = this.getAttribute('data-nom');
+        const img = card ? card.querySelector('img')?.getAttribute('src') : "";
+        const prix = card ? card.dataset.prix || "0" : "0";
+        let panier = JSON.parse(localStorage.getItem('panier') || '[]');
+        panier.push({id, nom, img, prix});
+        localStorage.setItem('panier', JSON.stringify(panier));
+        majBadgePanier();
+    });
+});
+document.getElementById('cart-icon')?.addEventListener('click', function() {
+    window.location.href = 'panier.html';
+});
+majBadgePanier();
+
+// ----------- Pagination & Catégories -----------
+function getFilteredCards() {
+    let cards = Array.from(document.querySelectorAll('.card-prod'));
+    if (currentCategory === 'tous') return cards;
+    if (currentCategory === 'favoris') {
+        return cards.filter(card => card.querySelector('.btn-favori').classList.contains('favori'));
+    }
+    return cards.filter(card => card.dataset.cat === currentCategory);
+}
+
+function afficherPage(page) {
+    const cards = getFilteredCards();
+    const totalPages = Math.ceil(cards.length / cardsPerPage);
+    cards.forEach((card, i) => {
+        card.style.display = (i >= (page-1)*cardsPerPage && i < page*cardsPerPage) ? "" : "none";
+    });
+    Array.from(document.querySelectorAll('.card-prod')).forEach(card => {
+        if (!cards.includes(card)) card.style.display = "none";
+    });
+    genererPagination(totalPages, page);
+}
+
+function genererPagination(totalPages, page) {
+    const container = document.getElementById('pagination');
+    if (!container) return;
+    container.innerHTML = '';
+    if (totalPages <= 1) return;
+    if (page > 1) {
+        const prev = document.createElement('button');
+        prev.textContent = 'Page précédente';
+        prev.onclick = () => { currentPage--; afficherPage(currentPage);}
+        container.appendChild(prev);
+    }
+    for (let i=1; i<=totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        if (i === page) btn.classList.add('active');
+        btn.onclick = () => { currentPage = i; afficherPage(currentPage);}
+        container.appendChild(btn);
+    }
+    if (page < totalPages) {
+        const next = document.createElement('button');
+        next.textContent = 'Page suivante';
+        next.onclick = () => { currentPage++; afficherPage(currentPage);}
+        container.appendChild(next);
+    }
+}
+
+function relancerPagination() {
+    currentPage = 1;
+    afficherPage(currentPage);
+}
+
+document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        currentCategory = btn.dataset.cat;
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.toggle('active', b === btn));
+        const descElem = document.getElementById('categorie-description');
+        if (descElem) {
+            const descriptions = {
+                'tous': "Chaque collection est pensée pour apporter douceur, originalité et réconfort. Explorez notre univers et trouvez la création qui vous correspond !",
+                'peluches': "Nos peluches sont confectionnées en laine ultra douce pour offrir tendresse et réconfort aux petits comme aux grands rêveurs. Laissez-vous séduire par leur douceur unique !",
+                'loisirs': "Découvrez un univers créatif et ludique autour de la laine : activités, kits et accessoires pour partager des moments de détente et d’imagination en famille ou entre amis.",
+                'plaids': "Nos plaids en laine invitent à la douceur et aux instants cocooning : parfaits pour s’envelopper de chaleur et d’amour lors de vos moments de détente à la maison.",
+                'naissance': "Pour célébrer les premiers instants de vie, nos créations en laine apportent douceur, délicatesse et personnalisation à chaque cadeau de naissance, pour des souvenirs inoubliables.",
+                'coffret' : "Découvrez nos coffrets fait main rien que pour vous, avec douceur et creation a un prix abordable",
+                'favoris': "Retrouvez ici toutes vos créations coup de cœur, sélectionnées avec amour parmi nos collections en laine."
+            };
+            descElem.textContent = descriptions[currentCategory] || descriptions['tous'];
+        }
+        relancerPagination();
+    });
+});
+window.addEventListener('DOMContentLoaded', relancerPagination);
+
+function updateFavCount() {
+    document.getElementById('fav-count').textContent = document.querySelectorAll('.btn-favori.favori').length;
+}
+document.querySelectorAll('.btn-favori').forEach(btn => {
+    btn.addEventListener('click', function() {
+        btn.classList.toggle('favori');
+        updateFavCount();
+        if (currentCategory === 'favoris') relancerPagination();
+    });
+});
+updateFavCount();
+
+document.querySelectorAll('.card-prod').forEach(card => {
+    const badgeType = card.dataset.badge;
+    if (badgeType && !card.querySelector('.card-badge')) {
+        const badge = document.createElement('div');
+        badge.className = 'card-badge ' + badgeType;
+        if (badgeType === "nouveau") badge.textContent = "Nouveau";
+        else if (badgeType === "promo") badge.textContent = "Promo";
+        else if (badgeType === "limite") badge.textContent = "Édition limitée";
+        else badge.textContent = badgeType.charAt(0).toUpperCase() + badgeType.slice(1);
+        card.prepend(badge);
+    }
+    if (card.dataset.nouveaute === "true" && !card.querySelector('.card-badge.nouveau')) {
+        const badge = document.createElement('div');
+        badge.className = 'card-badge nouveau';
+        badge.textContent = 'Nouveau';
+        card.prepend(badge);
+    }
+});
+
+document.querySelectorAll('.card-prod').forEach(card => {
+    const prixPromo = card.dataset.prix;
+    const prixAvant = card.dataset.prixAvant;
+    const prixDiv = card.querySelector('.card-prix');
+    if (prixAvant && card.dataset.badge === "promo") {
+        prixDiv.innerHTML =
+          `<span class="prix-barre">${Number(prixAvant).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €</span>
+           <span class="prix-promo">${Number(prixPromo).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €</span>`;
+    } else if (prixPromo && prixDiv) {
+        prixDiv.textContent = Number(prixPromo).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+    }
+});
+
+let currentSearch = '';
+document.getElementById('search-produits').addEventListener('input', function() {
+    currentSearch = this.value.trim().toLowerCase();
+    relancerPagination();
+});
+function getFilteredCards() {
+    let cards = Array.from(document.querySelectorAll('.card-prod'));
+    if (currentCategory !== 'tous' && currentCategory !== 'favoris') {
+        cards = cards.filter(card => card.dataset.cat === currentCategory);
+    }
+    if (currentCategory === 'favoris') {
+        cards = cards.filter(card => card.querySelector('.btn-favori').classList.contains('favori'));
+    }
+    if (currentSearch) {
+        cards = cards.filter(card => {
+            const nom = card.querySelector('.card-nom')?.textContent?.toLowerCase() || '';
+            return nom.includes(currentSearch);
+        });
+    }
+    return cards;
+}
+
+// ********* POPUP PRODUIT *********
+document.querySelectorAll('.card-prod').forEach(card => {
+  card.addEventListener('click', function(e) {
+    if(e.target.classList.contains('btn-acheter') || e.target.classList.contains('btn-favori')) return;
+    const img = card.querySelector('img').getAttribute('src');
+    const nom = card.querySelector('.card-nom').textContent;
+    const prix = card.querySelector('.card-prix').textContent || card.dataset.prix + " €";
+    const descs = {
+        "Amandine le faon": "Petite peluche faon douce, faite main en laine hypoallergénique. Idéale pour les câlins !",
+        "Quentin le pingouin": "Pingouin en laine avec bonnet tricoté, personnalisable. Fait main en France.",
+        // Ajoute toutes tes descriptions ici
+    };
+    document.getElementById('modal-img').src = img;
+    document.getElementById('modal-title').textContent = nom;
+    document.getElementById('modal-desc').textContent = descs[nom] || "";
+    document.getElementById('modal-price').textContent = prix;
+    document.getElementById('modal-produit').style.display = "flex";
+  });
+});
+document.getElementById('modal-close').onclick = function() {
+  document.getElementById('modal-produit').style.display = "none";
+};
+window.onclick = function(event) {
+  const modal = document.getElementById('modal-produit');
+  if (event.target === modal) modal.style.display = "none";
+};
+// --- descriptions des produits ---
+const descs = {
+  "Amandine le faon": "Petite peluche faon douce, faite main en laine hypoallergénique. Idéale pour les câlins !",
+  "Quentin le pingouin": "Pingouin en laine avec bonnet tricoté, personnalisable. Fait main en France.",
+  // Ajoute toutes tes descriptions ici
+};
+
+// --- stockage temporaire des avis (par produit) ---
+let avisStore = {}; // { [idProduit]: [ {stars, comment}, ... ] }
+
+function renderAvis(id) {
+  const avisList = avisStore[id] || [];
+  const starsZone = document.getElementById('modal-stars');
+  starsZone.innerHTML = '';
+  if (avisList.length > 0) {
+    let avg = Math.round(avisList.reduce((a,v)=>a+v.stars,0)/avisList.length);
+    for (let i=1; i<=5; i++) {
+      starsZone.innerHTML += `<span class="star">${i<=avg?"★":"☆"}</span>`;
+    }
+  }
+  const commentsZone = document.getElementById('modal-comments');
+  commentsZone.innerHTML = '';
+  if (avisList.length > 0) {
+    avisList.forEach(a => {
+      commentsZone.innerHTML += `<div><span class="star">${"★".repeat(a.stars)}</span> <b>${a.user}</b> : ${a.comment}</div>`;
+    });
+  } else {
+    commentsZone.innerHTML = "<em>Aucun avis pour ce produit.</em>";
+  }
+}
+
+function renderFormStars(selected=0) {
+  let starsHTML = '';
+  for(let i=1;i<=5;i++){
+    starsHTML += `<span class="star${i<=selected?' selected':''}" data-val="${i}">${i<=selected?'★':'☆'}</span>`;
+  }
+  document.getElementById('form-stars-select').innerHTML = starsHTML;
+  document.querySelectorAll('#form-stars-select .star').forEach(s=>{
+    s.onclick = function(){
+      renderFormStars(parseInt(this.dataset.val));
+    }
+  });
+  document.getElementById('form-stars-select').dataset.selected = selected;
+}
+
+document.querySelectorAll('.card-prod').forEach(card => {
+  card.addEventListener('click', function(e) {
+    if(e.target.classList.contains('btn-acheter') || e.target.classList.contains('btn-favori')) return;
+    const img = card.querySelector('img').getAttribute('src');
+    const nom = card.querySelector('.card-nom').textContent;
+    const prix = card.querySelector('.card-prix').textContent || card.dataset.prix + " €";
+    const id = card.dataset.id;
+    document.getElementById('modal-img').src = img;
+    document.getElementById('modal-title').textContent = nom;
+    document.getElementById('modal-desc').textContent = descs[nom] || "";
+    document.getElementById('modal-price').textContent = prix;
+    renderAvis(id);
+    renderFormStars();
+    document.getElementById('form-comment').value = '';
+    document.getElementById('modal-form-avis').onsubmit = function(ev){
+  ev.preventDefault();
+  const stars = parseInt(document.getElementById('form-stars-select').dataset.selected||0);
+  const user = document.getElementById('form-user').value.trim();
+  const comment = document.getElementById('form-comment').value.trim();
+  if(!stars || !comment || !user) return alert("Merci de donner une note, un commentaire et votre prénom/pseudo !");
+  if(!avisStore[id]) avisStore[id]=[];
+  avisStore[id].push({stars, comment, user});
+  renderAvis(id);
+  renderFormStars();
+  document.getElementById('form-comment').value = '';
+  document.getElementById('form-user').value = '';
+};
+    document.getElementById('modal-produit').style.display = "flex";
+  });
+});
+document.getElementById('modal-close').onclick = function() {
+  document.getElementById('modal-produit').style.display = "none";
+};
+window.onclick = function(event) {
+  const modal = document.getElementById('modal-produit');
+  if (event.target === modal) modal.style.display = "none";
+};
+</script>
+</body>
+</html>

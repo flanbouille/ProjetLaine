@@ -1,0 +1,20 @@
+.header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Met le logo tout à droite */
+    gap: 2.5em;
+}
+.logo-badge {
+    /* ENLÈVE margin-left ou mets-le à 0 */
+    margin-left: 0;
+    /* Le reste de tes styles */
+}
+@media (max-width: 900px) {
+    .header-flex {
+        gap: 1em;
+    }
+    .logo-badge {
+        margin-left: 0;
+        /* le reste inchangé */
+    }
+}
